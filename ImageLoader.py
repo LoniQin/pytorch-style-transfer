@@ -10,8 +10,6 @@ class ImageLoader(object):
             self.device = get_current_device()
         self.image = Image.open(file_path)
         self.image = loader(self.image)
-        print(self.image.size())
         self.image = self.image.unsqueeze(0)
-        print(self.image.size())
 
 

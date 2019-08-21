@@ -59,7 +59,7 @@ class StyleTransfer(object):
         print("After squeeze:", image.size())
         image = unloader(image)
         print("After unload: ", image.size)
-        plt.imshow(image)
+        #plt.imshow(image)
         if title is not None:
             plt.title(title)
         plt.pause(3)
@@ -133,10 +133,9 @@ class StyleTransfer(object):
                 loss = style_score + content_score
                 loss.backward()
                 self.step += 1
-                print("run {}".format(self.step))
+                #print("run {}".format(self.step))
                 if self.step % 50 == 0:
                     print("Style loss: {:4f} Content loss: {:4f}".format(style_score.item(), content_score.item()))
-                    print()
                 return content_score + content_score
             optimizer.step(closure)
         self.input_image.data.clamp_(0, 1)
@@ -156,13 +155,9 @@ class StyleTransfer(object):
 if __name__ == "__main__":
     root_dir = "./data/"
     transfer = StyleTransfer(size = (320, 500),
-                             content_path = root_dir + "space.jpg",
-                             style_path = root_dir + "the-starry-night.jpg",
+                             content_path = root_dir + "content.jpg",
+                             style_path = root_dir + "style.jpg",
                              step_count=100,
-                             save_path= root_dir + "style-image.jpg")
+                             save_path= root_dir + "output.jpg")
     transfer.load_image()
     transfer.run()
-    plt.figure()
-    transfer.show_image(transfer.input_image, "Input Image")
-    plt.show()
-
