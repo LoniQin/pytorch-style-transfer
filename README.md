@@ -8,7 +8,7 @@ transfer = StyleTransfer(
             size = (320, 500), 
             content_path = root_dir + "content.jpg",
             style_path = root_dir + "style.jpg",
-            step_count=100,
+            step_count = 100,
             save_path= root_dir + "output.jpg"
            )
 transfer.load_image()
